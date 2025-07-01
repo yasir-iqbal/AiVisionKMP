@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -37,6 +39,13 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            // koin
+            implementation("io.insert-koin:koin-android:4.1.0")
+
+            //Ktor
+            implementation(libs.ktor.client.android)
+            //SQLDelight
+            implementation(libs.sqldelight.android.driver)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -47,6 +56,31 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(compose.materialIconsExtended)
+
+            //navigation
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
+
+            // koin
+            implementation("io.insert-koin:koin-core:4.1.0")
+            implementation("io.insert-koin:koin-compose:4.1.0")
+
+            //date time
+            implementation(libs.kotlinx.datetime)
+            // Ktor
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.logging)
+
+            // SQLDelight (Database)
+            implementation(libs.sqldelight.runtime)
+            implementation(libs.sqldelight.coroutines)
+
+            // rich text
+            implementation("com.halilibo.compose-richtext:richtext-commonmark:0.16.0")
+            implementation("com.halilibo.compose-richtext:richtext-ui-material:0.16.0")
+            implementation("com.halilibo.compose-richtext:richtext-ui-material3:0.16.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -54,6 +88,13 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+        }
+        iosMain.dependencies {
+            // Ktor
+            implementation(libs.ktor.client.darwin)
+
+            // SQLDelight
+            implementation(libs.sqldelight.native.driver)
         }
     }
 }
@@ -97,6 +138,14 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.apps.aivisioncmp"
             packageVersion = "1.0.0"
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("AiVisionDataBase") {
+            packageName = "com.apps.aivisioncmp.database"
         }
     }
 }
