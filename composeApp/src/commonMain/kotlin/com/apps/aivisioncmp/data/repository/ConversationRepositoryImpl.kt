@@ -7,7 +7,7 @@ import com.apps.aivisioncmp.domain.repository.ConversationRepository
 class ConversationRepositoryImpl(private val localDataSource: LocalDataSource):ConversationRepository {
     override suspend fun addConversation(conversation: Conversation):Long {
         localDataSource.addConversation(conversation)
-        return localDataSource.getLastInsertedRecordId()
+        return localDataSource.getLastConversationId().maxId ?: 0L
     }
 
     override suspend fun getAllConversation(): List<Conversation> = localDataSource.getAllConversations()

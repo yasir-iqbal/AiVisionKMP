@@ -23,8 +23,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -34,7 +38,11 @@ import com.apps.aivisioncmp.data.model.GPTRole
 import com.apps.aivisioncmp.utils.ConversationType
 import com.apps.aivisioncmp.utils.KMPLogger
 import com.apps.aivisioncmp.utils.PlatformAdaptiveText
-
+import com.apps.aivisioncmp.utils.decodeBase64ToImageBitmap
+import io.kamel.image.KamelImage
+import io.kamel.image.asyncPainterResource
+import kotlinx.coroutines.launch
+private val TAG = "MessageBubble"
 
 @Composable
 fun MessageBubble(message: ChatMessage, onImage:(String)->Unit) {
@@ -77,7 +85,7 @@ fun MessageBubble(message: ChatMessage, onImage:(String)->Unit) {
                 }
             ,
         ) {
-            logger.error("List","Item:${message.id}")
+            //logger.error("List","Item:${message.id}")
             if (isUSERMsg){
                 Column {
                     Text(
@@ -91,13 +99,59 @@ fun MessageBubble(message: ChatMessage, onImage:(String)->Unit) {
             }else {
 
                 CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onBackground/*, fontWeight  = FontWeight.W600*/)) {
-                  PlatformAdaptiveText(message.content)
+                  //  logger.error("MessageBuble","content:${message.content}")
+                    PlatformAdaptiveText(message.content)
                 }
 
 
                 if (message.url.isNotEmpty() && isImage) {
-                    Spacer(modifier = Modifier
-                        .size(250.dp))
+                   /* Spacer(modifier = Modifier
+                        .size(250.dp))*/
+                    logger.debug(TAG,"image:${message.url}")
+                    KamelImage(
+                        asyncPainterResource("${message.url}"),
+                        contentDescription ="image",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(250.dp)
+                            .padding(2.dp)
+                            .clip(
+                                RoundedCornerShape(
+                                    topStart = 10.dp,
+                                    topEnd = 10.dp,
+                                    bottomStart = 10.dp,
+                                    bottomEnd = 10.dp
+                                )
+                            ),
+                        onLoading = { logger.debug(TAG,"loading started")},
+                        onFailure = {logger.error(TAG,"${it.message}")
+                            it.printStackTrace()})
+                   /* var imageBitmap by remember(message.url) {
+                        mutableStateOf<ImageBitmap?>(null)
+                    }
+
+                    val scope = rememberCoroutineScope()
+
+                    LaunchedEffect(message.url) {
+                        scope.launch {
+                            val decoded = decodeBase64ToImageBitmap(message.url)
+                            logger.error(TAG,"base64:${message.url}")
+                            if (decoded != null) {
+                                logger.error(TAG,"Decoded")
+                                imageBitmap = decoded
+                            }
+                        }
+                    }
+
+                    imageBitmap?.let {
+                        Image(
+                            painter = BitmapPainter(it),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(250.dp)
+                        )
+                    }*/
 
                     /*if (message.status == DownloadStatusEnum.COMPLETED.value) {
                         GlideImage(

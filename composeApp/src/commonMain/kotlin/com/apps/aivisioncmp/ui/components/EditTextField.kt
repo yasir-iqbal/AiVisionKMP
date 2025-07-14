@@ -47,7 +47,7 @@ fun EditTextField(
         ConversationType.IMAGE.name, true
     )
    // val context = LocalContext.current
-    val isKeyBoardVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
+    /*val isKeyBoardVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
     LaunchedEffect(key1 = isKeyBoardVisible) {
         logger.error("ChatScreen", "iskeyBoard:${isKeyBoardVisible}")
         if (isKeyBoardVisible) {
@@ -55,7 +55,7 @@ fun EditTextField(
         } else {
             //show fab button
         }
-    }
+    }*/
     val scope = rememberCoroutineScope()
     var text by remember { mutableStateOf("") }
     var hasFocus by remember { mutableStateOf(false) }
@@ -196,7 +196,7 @@ fun EditTextField(
 
                     ) {
                         Icon(
-                            imageVector= if (text.isNotEmpty()) Icons.Rounded.Send else Icons.Rounded.Mic,
+                            imageVector= if (text.isNotEmpty()) Icons.Rounded.Send else Icons.Rounded.Send,
                             "sendMessage",
                             modifier = Modifier.size(25.dp),
                             tint = White,

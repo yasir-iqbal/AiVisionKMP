@@ -46,14 +46,27 @@ import androidx.compose.foundation.lazy.items
 import com.apps.aivisioncmp.ui.components.EditTextField
 import com.apps.aivisioncmp.ui.components.MessageBubble
 import com.apps.aivisioncmp.ui.components.StopGenerateButton
+import org.koin.compose.getKoin
 
 private const  val ANIMATION_DURATION = 50
 @Composable
 fun ChatScreen(navigateToBack: () -> Unit,
                     data: ChatData,
-                    viewModel: ChatViewModel = koinInject())
+                   /* viewModel: ChatViewModel = koinInject()*/)
 {
+    val vm = remember {
+        // Create a holder Composable to resolve the viewmodel inside
+        mutableStateOf<ChatViewModel?>(null)
+    }
 
+    // If not yet initialized, initialize it now
+    if (vm.value == null) {
+        vm.value = getKoin().get<ChatViewModel>() // ✅ Safe here because outside remember {}
+    }
+    val viewModel = vm.value!!
+    //val viewModel:ChatViewModel  = getKoin().get<ChatViewModel>()
+    //val viewModel:ChatViewModel  = remember { koinInject() }
+    //val viewModel = remember { getKoin().get<ChatViewModel>() }
     val messages by viewModel.messages.collectAsState()
     val isAiProcessing by viewModel.isAiProcessing.collectAsState()
     val conversationType by viewModel.currentConversationType.collectAsState()

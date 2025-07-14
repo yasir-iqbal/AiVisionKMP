@@ -55,3 +55,9 @@ SELECT * FROM MessageEntity WHERE chat_id = ? ORDER BY id DESC LIMIT ?;
 
 lastInsertId:
 SELECT last_insert_rowid();
+
+getLastConversationId:
+SELECT MAX(id) AS maxId FROM ConversationEntity;
+
+getLastMessageId:
+SELECT MAX(id) AS maxId FROM MessageEntity;

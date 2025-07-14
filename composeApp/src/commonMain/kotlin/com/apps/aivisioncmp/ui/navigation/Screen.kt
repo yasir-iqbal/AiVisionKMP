@@ -1,8 +1,15 @@
 package com.apps.aivisioncmp.ui.navigation
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 sealed class Screen(val route: String) {
-    object Welcome : Screen("welcome_screen")
-    object Conversation : Screen("conversation_screen")
-    object Chat : Screen("chat_screen")
-    object Language : Screen("language_screen")
+    @Serializable
+    data object Welcome : Screen("welcome_screen")
+    @Serializable
+    data object Conversation : Screen("conversation_screen")
+    @Serializable
+    data class Chat(val chatId:Long?,val type:String) : Screen("chat_screen")
+    @Serializable
+    data object Language : Screen("language_screen")
 }

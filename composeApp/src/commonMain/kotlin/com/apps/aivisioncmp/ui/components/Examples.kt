@@ -79,7 +79,7 @@ fun Examples(
                 textAlign = TextAlign.Center
             )
              Spacer(modifier = Modifier.width(8.dp))
-             Icon(imageVector =Icons.Default.ArrowDropDown , contentDescription ="",modifier=Modifier.size(28.dp), tint = MaterialTheme.colorScheme.onSurface )
+         //    Icon(imageVector =Icons.Default.ArrowDropDown , contentDescription ="",modifier=Modifier.size(28.dp), tint = MaterialTheme.colorScheme.onSurface )
 
          }
 

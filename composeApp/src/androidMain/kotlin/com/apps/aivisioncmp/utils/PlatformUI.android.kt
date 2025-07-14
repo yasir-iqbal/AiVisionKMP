@@ -7,6 +7,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -19,13 +21,15 @@ import com.halilibo.richtext.ui.InfoPanelStyle
 import com.halilibo.richtext.ui.RichTextStyle
 import com.halilibo.richtext.ui.TableStyle
 import com.halilibo.richtext.ui.material3.Material3RichText
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 actual fun platformTextStyle(): TextStyle = TextStyle(
     platformStyle = PlatformTextStyle(includeFontPadding = false)
 )
 
 @Composable
-actual fun PlatformAdaptiveText(content: String) = @androidx.compose.runtime.Composable {
+actual fun PlatformAdaptiveText(content: String)  {
 
     Material3RichText(
         modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
@@ -50,5 +54,15 @@ actual fun PlatformAdaptiveText(content: String) = @androidx.compose.runtime.Com
         Markdown(
             content = content.trimIndent()
         )
+    }
+}
+
+actual suspend fun decodeBase64ToImageBitmap(base64: String): ImageBitmap? = withContext(Dispatchers.IO) {
+    try {
+        val bytes = android.util.Base64.decode(base64, android.util.Base64.DEFAULT)
+        val bitmap = android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+        bitmap?.asImageBitmap()
+    } catch (e: Exception) {
+        null
     }
 }

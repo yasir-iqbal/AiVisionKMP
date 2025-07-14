@@ -74,6 +74,7 @@ import com.apps.aivisioncmp.ui.components.TopBarSearch
 import com.apps.aivisioncmp.ui.dialogs.ConfirmationDialog
 import com.apps.aivisioncmp.ui.theme.Barlow
 import com.apps.aivisioncmp.utils.ConversationType
+import com.apps.aivisioncmp.utils.KMPLogger
 import com.apps.aivisioncmp.utils.toFormattedDate
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -323,6 +324,8 @@ fun ConversationScreen( navigateToChat: ( chatId:Long?,String) -> Unit,viewModel
 @Composable
 fun RecentItem(recentItem : Conversation, onItemClick:(Conversation)->Unit, onDelete:(Conversation)->Unit)
 {
+    val logger = remember {   KMPLogger()}
+    logger.error("ConversationScreen","$recentItem")
     val scope = rememberCoroutineScope()
     val currentItem by rememberUpdatedState(recentItem)
 

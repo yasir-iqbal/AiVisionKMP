@@ -9,5 +9,5 @@ val viewModelModule = module {
 
     single { WelcomeScreenViewModel(get(), get()) }
     single { ConversationViewModel(get(), get(),get(),get(),get(),get()) }
-    single { ChatViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get()) }
+    factory { ChatViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get(),get()) }
 }

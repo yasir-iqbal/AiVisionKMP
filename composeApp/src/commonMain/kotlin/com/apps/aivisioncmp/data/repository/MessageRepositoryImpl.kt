@@ -14,7 +14,7 @@ class MessageRepositoryImpl(private val localDataSource: LocalDataSource):Messag
 
     override suspend fun addMessage(message: ChatMessage):Long {
         localDataSource.addMessage(message)
-        return localDataSource.getLastInsertedRecordId()
+        return localDataSource.getLastMessageId().maxId ?: 0L
     }
 
     override suspend fun deleteMessages(recentChatId: Long) = localDataSource.deleteAllMessages(recentChatId)

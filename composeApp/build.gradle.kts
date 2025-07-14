@@ -40,12 +40,18 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             // koin
-            implementation("io.insert-koin:koin-android:4.1.0")
-
+            implementation(libs.koin.android)
             //Ktor
             implementation(libs.ktor.client.android)
             //SQLDelight
             implementation(libs.sqldelight.android.driver)
+
+            // rich text
+            implementation(libs.richtext.commonmark)
+            implementation(libs.richtext.ui.material)
+            implementation(libs.richtext.ui.material3)
+
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -59,11 +65,11 @@ kotlin {
             implementation(compose.materialIconsExtended)
 
             //navigation
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
+            implementation(libs.navigation.compose)
 
             // koin
-            implementation("io.insert-koin:koin-core:4.1.0")
-            implementation("io.insert-koin:koin-compose:4.1.0")
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
 
             //date time
             implementation(libs.kotlinx.datetime)
@@ -73,21 +79,25 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.logging)
 
+            // image library
+            implementation(libs.kamel.image)
+
             // SQLDelight (Database)
             implementation(libs.sqldelight.runtime)
             implementation(libs.sqldelight.coroutines)
 
-            // rich text
-            implementation("com.halilibo.compose-richtext:richtext-commonmark:0.16.0")
-            implementation("com.halilibo.compose-richtext:richtext-ui-material:0.16.0")
-            implementation("com.halilibo.compose-richtext:richtext-ui-material3:0.16.0")
-        }
+                    }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+            // rich text
+            implementation(libs.richtext.commonmark)
+            implementation(libs.richtext.ui.material)
+            implementation(libs.richtext.ui.material3)
+
         }
         iosMain.dependencies {
             // Ktor
@@ -95,6 +105,8 @@ kotlin {
 
             // SQLDelight
             implementation(libs.sqldelight.native.driver)
+           // implementation("org.jetbrains.skiko:skiko:0.7.63")
+            implementation(libs.skiko)
         }
     }
 }
@@ -127,6 +139,7 @@ android {
 }
 
 dependencies {
+   // implementation(libs.androidx.ui.graphics.desktop)
     debugImplementation(compose.uiTooling)
 }
 

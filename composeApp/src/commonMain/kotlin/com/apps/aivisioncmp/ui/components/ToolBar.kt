@@ -116,7 +116,7 @@ fun ToolBarChat(
     tint: Color,
     showDivider:Boolean = true,
     creditsCount:Int=0,
-    isStyleMode:Boolean = true,
+    isStyleMode:Boolean = false,
     isSubMode:Boolean = false,
     isPremium:Boolean = false
 ) {
@@ -201,7 +201,7 @@ fun ToolBarChat(
         }
 
 
-        Row(
+     /*   Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
@@ -252,7 +252,7 @@ fun ToolBarChat(
                 }
             }
 
-        }
+        }*/
 
         if (showDivider)
         {   Divider(

@@ -2,6 +2,7 @@ package com.apps.aivisioncmp.di
 
 import com.apps.aivisioncmp.domain.usecase.app.GetStringResourceExampleUseCase
 import com.apps.aivisioncmp.domain.usecase.chat.CompleteChatUseCase
+import com.apps.aivisioncmp.domain.usecase.chat.GenerateImageUseCase
 import com.apps.aivisioncmp.domain.usecase.conversations.CreateConversationUseCase
 import com.apps.aivisioncmp.domain.usecase.conversations.DeleteAllConversationUseCase
 import com.apps.aivisioncmp.domain.usecase.conversations.DeleteConversationUseCase
@@ -44,6 +45,7 @@ val useCaseModule = module {
 
     // Chat
     single { CompleteChatUseCase(get()) }
+    single { GenerateImageUseCase(get()) }
 
 
 

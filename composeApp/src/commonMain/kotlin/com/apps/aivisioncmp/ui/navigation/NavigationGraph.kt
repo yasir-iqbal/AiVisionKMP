@@ -11,49 +11,42 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import androidx.savedstate.SavedState
 import com.apps.aivisioncmp.ui.chats.ChatData
 import com.apps.aivisioncmp.ui.chats.ChatScreen
 import com.apps.aivisioncmp.ui.conversations.ConversationScreen
 import com.apps.aivisioncmp.ui.welcome.WelcomeScreen
+import com.apps.aivisioncmp.utils.KMPLogger
 import kotlinx.serialization.json.Json
 
 @Composable
 fun NavigationGraph(navController: NavHostController, innerPadding: PaddingValues) {
 
-    NavHost(navController = navController, startDestination = Screen.Welcome.route,  modifier = Modifier.padding(innerPadding),
+    NavHost(navController = navController, startDestination = Screen.Welcome,  modifier = Modifier.padding(innerPadding),
         enterTransition = { fadeIn() },
         exitTransition = { fadeOut() }) {
-        composable(Screen.Welcome.route) {
+        composable<Screen.Welcome> {
             WelcomeScreen(navigateToConversation = {
-                navController.navigate(Screen.Conversation.route)
+                navController.navigate(Screen.Conversation)
 
             })
             //HomeScreen(onNavigateToDetail = { navController.navigate("detail") })
         }
-        composable(Screen.Conversation.route) {
+        composable<Screen.Conversation> {
             ConversationScreen(navigateToChat = { id, type ->
-
-                val data = ChatData(chatId =  id, conversationType = type)
-                val json = Json.encodeToString(data)
-                navController.navigate("${Screen.Chat.route}/$json")
+                navController.navigate(Screen.Chat(id,type))
             })
             //DetailScreen(onBack = { navController.popBackStack() })
         }
 
-        composable(route= "${Screen.Chat.route}/{data}", arguments = listOf(navArgument("data") { type = NavType.StringType })) {
-            var data = ChatData()
-
-            val userId = it.arguments?.ge
-            it.arguments?.get("data")?.let {json->
-                if (json.isNotEmpty())
-                {
-                    data = Json.decodeFromString<ChatData>(json)
-                }
-            }
+        composable<Screen.Chat>{
+            val chat:Screen.Chat = it.toRoute()
+            val logger = KMPLogger()
+            logger.error("Data",":${chat}")
             ChatScreen(navigateToBack = {
                 navController.popBackStack()
-            }, data = data)
+            }, data = ChatData(chatId = chat.chatId, conversationType = chat.type))
         }
     }
 
