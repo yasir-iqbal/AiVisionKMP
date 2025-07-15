@@ -70,9 +70,7 @@ fun ChatScreen(navigateToBack: () -> Unit,
            viewModel.clearResources()
         }
     }
-    //val viewModel:ChatViewModel  = getKoin().get<ChatViewModel>()
-    //val viewModel:ChatViewModel  = remember { koinInject() }
-    //val viewModel = remember { getKoin().get<ChatViewModel>() }
+    
     val messages by viewModel.messages.collectAsState()
     val isAiProcessing by viewModel.isAiProcessing.collectAsState()
     val conversationType by viewModel.currentConversationType.collectAsState()
