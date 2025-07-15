@@ -61,14 +61,17 @@ This project is built using **JetBrains Compose Multiplatform** and follows a **
 
 <p align="center">
   <img src="screen_shots/ios/welcome.png" alt="Welcome Screen" width="40%"/>
-  <img src="screen_shots/ios/conversation.png" alt="Conversation Screen" width="40%"/>
+  <img src="screen_shots/ios/conversations.png" alt="Conversation Screen" width="40%"/>
 </p>
 
 <p align="center">
   <img src="screen_shots/ios/chat.png" alt="Chat Screen" width="40%"/>
-  <img src="screen_shots/ios/image1.png" alt="Chat Screen" width="40%"/>
+  <img src="screen_shots/ios/image1.png" alt="Image Screen" width="40%"/>
 </p>
-![iOS Home](screen_shots/Ios/image2.png))
+<p align="center">
+  <img src="screen_shots/ios/image2.png" alt="Image Screen" width="40%"/>
+</p>
+
 
 ## 🚀 Getting Started
 
