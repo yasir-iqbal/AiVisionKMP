@@ -32,7 +32,6 @@ This project is built using **JetBrains Compose Multiplatform** and follows a **
 ## 🖼️ Android Screenshots
 
 ### 🟢 Welcome Screen
-<img src="screen_shots/android/dark_welcome.png" alt="App Screenshot" width="300"/>
-
+![Detail Screen](screen_shots/android/dark_welcome.png)
 ### 🔍 Conversation Screen
 ![Detail Screen](screen_shots/android/dark_conversation.png)
