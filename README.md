@@ -89,7 +89,7 @@ This project is built using **JetBrains Compose Multiplatform** and follows a **
 ./gradlew :androidApp:installDebug
 Or run directly from Android Studio.
 
-🍏 Run iOS App
+### 🍏 Run iOS App
 1.Open iosApp/iosApp.xcworkspace in Xcode
 2. Select your target device or simulator
 3. Build and Run
