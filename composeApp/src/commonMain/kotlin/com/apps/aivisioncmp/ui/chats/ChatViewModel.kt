@@ -30,6 +30,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import com.apps.aivisioncmp.utils.ConversationType
 import com.apps.aivisioncmp.utils.KMPLogger
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
@@ -257,7 +258,12 @@ class ChatViewModel(private val stringResourceExampleUseCase: GetStringResourceE
 
     override fun onCleared() {
         super.onCleared()
+       clearResources()
+    }
+
+    fun clearResources(){
         messageJob?.cancel()
+        apiJob?.cancel()
     }
 
 }

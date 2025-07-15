@@ -43,6 +43,7 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.DisposableEffect
 import com.apps.aivisioncmp.ui.components.EditTextField
 import com.apps.aivisioncmp.ui.components.MessageBubble
 import com.apps.aivisioncmp.ui.components.StopGenerateButton
@@ -64,6 +65,14 @@ fun ChatScreen(navigateToBack: () -> Unit,
         vm.value = getKoin().get<ChatViewModel>() // ✅ Safe here because outside remember {}
     }
     val viewModel = vm.value!!
+    DisposableEffect(Unit) {
+        onDispose {
+
+           viewModel.clearResources()
+        // If your VM implements Closeable
+            // OR call your custom cleanup method
+        }
+    }
     //val viewModel:ChatViewModel  = getKoin().get<ChatViewModel>()
     //val viewModel:ChatViewModel  = remember { koinInject() }
     //val viewModel = remember { getKoin().get<ChatViewModel>() }

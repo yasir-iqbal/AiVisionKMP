@@ -11,7 +11,7 @@ object Constants {
     const val INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
     const val PRIVACY_POLICY = "https://www.google.com/"
     const val TERMS_SERVICE = "https://www.google.com/"
-    const val GPT_KEY = "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"
+    const val GPT_KEY = ""
     const val DAILY_FREE_CREDITS=5
     const val CHAT_MESSAGE_COST = 1
     const val CHAT_MESSAGE_GPT4_COST = 2
