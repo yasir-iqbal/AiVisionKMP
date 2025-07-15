@@ -83,6 +83,8 @@ This project is built using **JetBrains Compose Multiplatform** and follows a **
 - Xcode (for iOS builds)
 - Replace gpt_key with your own key
 
+
+
 ### ▶️ Run Android App
 
 ```bash
@@ -90,8 +92,10 @@ This project is built using **JetBrains Compose Multiplatform** and follows a **
 Or run directly from Android Studio.
 
 
+
+
 ### 🍏 Run iOS App
-```bash
+
 1.Open iosApp/iosApp.xcworkspace in Xcode
 2. Select your target device or simulator
 3. Build and Run
