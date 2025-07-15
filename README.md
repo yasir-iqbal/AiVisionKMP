@@ -1,14 +1,38 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+# 🧩 Compose Multiplatform Clean Architecture App
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+This project is built using **JetBrains Compose Multiplatform** and follows a **Clean Architecture** pattern. It supports both **Android** and **iOS** platforms and is structured for scalability, modularity, and testability.
 
+---
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## 🏗️ Tech Stack
+
+| Layer         | Library                                           |
+|---------------|---------------------------------------------------|
+| UI            | [JetBrains Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform) |
+| Dependency Injection | [Koin](https://insert-koin.io/)                    |
+| Networking    | [Ktor Client](https://ktor.io/)                   |
+| Local Database| [SQLDelight](https://cashapp.github.io/sqldelight/) |
+| Architecture  | Clean Architecture (Presentation → Domain → Data) |
+
+---
+
+## 📦 Features
+
+- ✨ Kotlin Multiplatform (Android + iOS)
+- ✅ MVVM with Clean Architecture
+- 📦 Dependency injection via Koin
+- 🌐 Networking using Ktor
+- 💾 Local persistence using SQLDelight
+- 💡 Modular and maintainable codebase
+- 🧪 Ready for testing and scaling
+
+---
+
+## 🖼️ Android Screenshots
+
+### 🟢 Welcome Screen
+![Home Screen](screen_shots/android/dark_welcome.png)
+
+### 🔍 Conversation Screen
+![Detail Screen](screen_shots/android/dark_conversation.png)
