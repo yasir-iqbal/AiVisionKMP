@@ -67,10 +67,7 @@ fun ChatScreen(navigateToBack: () -> Unit,
     val viewModel = vm.value!!
     DisposableEffect(Unit) {
         onDispose {
-
            viewModel.clearResources()
-        // If your VM implements Closeable
-            // OR call your custom cleanup method
         }
     }
     //val viewModel:ChatViewModel  = getKoin().get<ChatViewModel>()
