@@ -68,7 +68,7 @@ class APIClient(private val client: HttpClient) {
 
                 while (!channel.isClosedForRead) {
                     val line = channel.readUTF8Line() ?: continue
-                   // logger.error(TAG,"line:${line}")
+                    logger.error(TAG,"line:${line}")
                     if (line.startsWith("data: ")) {
 
                         val json = line.removePrefix("data: ").trim()
@@ -92,6 +92,10 @@ class APIClient(private val client: HttpClient) {
                             throw Exception(e)
                             // Malformed JSON, skip
                         }
+                    } else  {
+                        val json = line.trim()
+                        trySend(json)
+                        delay(30)
                     }
                     if (!scope.isActive) {
                         break
